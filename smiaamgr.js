@@ -1,6 +1,11 @@
 define(['managerAPI', 
-    'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], 
-function(Manager){
+    'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], function(Manager){
+    
+
+	//You can use the commented-out code to get parameters from the URL.
+	//const queryString = window.location.search;
+    //const urlParams = new URLSearchParams(queryString);
+    //const pt = urlParams.get('pt');
 
     var API = new Manager();
     init_data_pipe(API, 'your-study-id', {file_type: 'csv'}); // Replace 'your-study-id' with your actual study ID.
