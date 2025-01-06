@@ -9,11 +9,12 @@
         require.config({
             baseUrl: './',
             paths: {
-                'managerAPI': 'https://raw.githubusercontent.com/PoPLab-McGill/MinnoJS/main/smiaamgr.js' // Reference to your custom manager script
+                'managerAPI': 'https://raw.githubusercontent.com/PoPLab-McGill/MinnoJS/main/smiaamgr.js', // Reference to your custom manager script
+                'sciatScript': 'https://raw.githubusercontent.com/PoPLab-McGill/MinnoJS/main/smiaa.js' // Reference to SC-IAT script
             }
         });
 
-        require(['managerAPI', 'text!./smiaa.html'], function(Manager, sciatScript) {
+        require(['managerAPI', 'sciatScript'], function(Manager, sciatScript) {
             // Initialize and run the SC-IAT script
             var API = new Manager();
             API.addScript(sciatScript);
