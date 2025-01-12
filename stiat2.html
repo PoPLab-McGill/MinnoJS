@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Single Category IAT Study</title>
+    
     <!-- Link to the MinnoJS library -->
     <script src="https://cdn.jsdelivr.net/gh/minnojs/minnojs@1.*/minno.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js"></script>
@@ -14,10 +15,10 @@
 
     <!-- Include your custom JavaScript file for the IAT -->
     <script>
-     require(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], function (Manager) {
-            var API = new Manager();
-            // Continue with your setup
-        });
+        // Ensure that MinnoJS is loaded before initializing the Manager
+        var API = new Manager();
+        // Initialize DataPipe with your study ID
+        init_data_pipe(API, 'abc123xyz', {file_type: 'csv'});
     </script>
 </body>
 </html>
