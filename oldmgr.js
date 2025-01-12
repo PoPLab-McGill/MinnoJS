@@ -5,7 +5,7 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
     API.addSettings('skip', true);
 
     // IMPORTANT: Replace the 2nd argument with your DataPipe Experiment ID
-    init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG', { file_type: 'csv' });
+    init_data_pipe(API, '', { file_type: 'csv' });
 
     // Define target category labels (e.g., Cats) and attributes (Good, Bad)
     let targetLabels = ['Cats'];  // Target category - only one category
