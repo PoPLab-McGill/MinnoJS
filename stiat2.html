@@ -14,10 +14,10 @@
 
     <!-- Include your custom JavaScript file for the IAT -->
     <script>
-        var API = new Manager();
-        // Continue with your setup code here
-        // For example:
-        init_data_pipe(API, 'your-study-id', {file_type: 'csv'});
+     require(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], function (Manager) {
+            var API = new Manager();
+            // Continue with your setup
+        });
     </script>
 </body>
 </html>
