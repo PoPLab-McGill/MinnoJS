@@ -2,51 +2,44 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
     let API = new Manager();
 
     API.setName('mgr');
-    API.addSettings('skip',true);
-	
-	//IMPORTANT: Replace the 2nd argument with your DataPipe Experiment ID
-	init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG',  {file_type:'csv'});	
+    API.addSettings('skip', true);
 
-    //Randomly select which of two sets of category labels to use.
-    let raceSet = API.shuffle(['a','b'])[0];
-    let blackLabels = [];
-    let whiteLabels = [];
+    // IMPORTANT: Replace the 2nd argument with your DataPipe Experiment ID
+    init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG', { file_type: 'csv' });
 
-    if (raceSet == 'a') {
-        blackLabels.push('African Americans');
-        whiteLabels.push('European Americans');
-    } else {
-        blackLabels.push('Black people');
-        whiteLabels.push('White people');
-    }
+    // Define target category labels (e.g., Cats) and attributes (Good, Bad)
+    let targetLabels = ['Cats'];  // Target category - only one category
+    let posLabels = ['Good', 'Positive', 'Pleasant']; // Positive attribute
+    let negLabels = ['Bad', 'Negative', 'Unpleasant']; // Negative attribute
 
+    // Shuffle the words for the target categories
     API.addGlobal({
-        raceiat:{},
-        //YBYB: change when copying back to the correct folder
+        targetLabels: targetLabels,
+        posLabels: posLabels,
+        negLabels: negLabels,
         baseURL: './images/',
-        raceSet:raceSet,
-        blackLabels:blackLabels,
-        whiteLabels:whiteLabels,
-        //Select randomly what attribute words to see. 
-        //Based on Axt, Feng, & Bar-Anan (2021).
-        posWords : API.shuffle([
+
+        // Positive words (e.g., good, pleasant)
+        posWords: API.shuffle([
             'Love', 'Cheer', 'Friend', 'Pleasure',
-            'Adore', 'Cheerful', 'Friendship', 'Joyful', 
-            'Smiling','Cherish', 'Excellent', 'Glad', 
-            'Joyous', 'Spectacular', 'Appealing', 'Delight', 
-            'Excitement', 'Laughing', 'Attractive','Delightful', 
-            'Fabulous', 'Glorious', 'Pleasing', 'Beautiful', 
-            'Fantastic', 'Happy', 'Lovely', 'Terrific', 
+            'Adore', 'Cheerful', 'Friendship', 'Joyful',
+            'Smiling', 'Cherish', 'Excellent', 'Glad',
+            'Joyous', 'Spectacular', 'Appealing', 'Delight',
+            'Excitement', 'Laughing', 'Attractive', 'Delightful',
+            'Fabulous', 'Glorious', 'Pleasing', 'Beautiful',
+            'Fantastic', 'Happy', 'Lovely', 'Terrific',
             'Celebrate', 'Enjoy', 'Magnificent', 'Triumph'
-        ]), 
-        negWords : API.shuffle([
-            'Abuse', 'Grief', 'Poison', 'Sadness', 
-            'Pain', 'Despise', 'Failure', 'Nasty', 
-            'Angry', 'Detest', 'Horrible', 'Negative', 
-            'Ugly', 'Dirty', 'Gross', 'Evil', 
-            'Rotten','Annoy', 'Disaster', 'Horrific',  
-            'Scorn', 'Awful', 'Disgust', 'Hate', 
-            'Humiliate', 'Selfish', 'Tragic', 'Bothersome', 
+        ]),
+
+        // Negative words (e.g., bad, unpleasant)
+        negWords: API.shuffle([
+            'Abuse', 'Grief', 'Poison', 'Sadness',
+            'Pain', 'Despise', 'Failure', 'Nasty',
+            'Angry', 'Detest', 'Horrible', 'Negative',
+            'Ugly', 'Dirty', 'Gross', 'Evil',
+            'Rotten', 'Annoy', 'Disaster', 'Horrific',
+            'Scorn', 'Awful', 'Disgust', 'Hate',
+            'Humiliate', 'Selfish', 'Tragic', 'Bothersome',
             'Hatred', 'Hurtful', 'Sickening', 'Yucky'
         ])
     });
@@ -71,11 +64,11 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
             header: 'Welcome'
         }],
 
-        raceiat_instructions: [{
+        sciat_instructions: [{
             inherit: 'instructions',
-            name: 'raceiat_instructions',
-            templateUrl: 'raceiat_instructions.jst',
-            title: 'IAT Instructions',
+            name: 'sciat_instructions',
+            templateUrl: 'sciat_instructions.jst',
+            title: 'Single Category IAT Instructions',
             header: 'Implicit Association Test'
         }],
 
@@ -85,10 +78,10 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
             scriptUrl: 'explicits.js'
         }],
 
-        raceiat: [{
+        sciat: [{
             type: 'time',
-            name: 'raceiat',
-            scriptUrl: 'raceiat.js'
+            name: 'sciat',
+            scriptUrl: 'sciat.js'
         }],
 
         lastpage: [{
@@ -96,48 +89,42 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
             name: 'lastpage',
             templateUrl: 'lastpage.jst',
             title: 'End',
-            //Uncomment the following if you want to end the study here.
-            //last:true, 
             header: 'You have completed the study'
-        }], 
-        
-   		//This task waits until the data are sent to the server.
-        uploading: uploading_task({header: 'just a moment', body:'Please wait, sending data... '}),
-		
-        //Use if you want to redirect the participants elsewhere at the end of the study
-        redirect:
-        [{ 
-			//At the end of the url, insert your Prolific study code
-            type:'redirect', name:'redirecting', url: 'https://app.prolific.co/submissions/complete?cc=YOURPROLIFICCODE' 
-        }]
+        }],
 
+        uploading: uploading_task({ header: 'Just a moment', body: 'Please wait, sending data...' }),
+
+        redirect: [{
+            type: 'redirect',
+            name: 'redirecting',
+            url: 'https://app.prolific.co/submissions/complete?cc=YOURPROLIFICCODE'
+        }]
     });
 
     API.addSequence([
-        
-        { type: 'post', path: ['raceSet', 'blackLabels', 'whiteLabels'] },
+        { type: 'post', path: ['targetLabels', 'posLabels', 'negLabels'] },
 
-        {inherit: 'prolificid'},
-        
-        {inherit: 'intro'},
+        { inherit: 'prolificid' },
+
+        { inherit: 'intro' },
         {
-            mixer:'random',
-            data:[
-                {inherit: 'explicits'},
+            mixer: 'random',
+            data: [
+                { inherit: 'explicits' },
 
                 {
                     mixer: 'wrapper',
                     data: [
-                        {inherit: 'raceiat_instructions'},
-                        {inherit: 'raceiat'}
+                        { inherit: 'sciat_instructions' },
+                        { inherit: 'sciat' }
                     ]
                 }
             ]
         },
 
-        {inherit: 'uploading'},
-        {inherit: 'lastpage'},
-        {inherit: 'redirect'}
+        { inherit: 'uploading' },
+        { inherit: 'lastpage' },
+        { inherit: 'redirect' }
     ]);
 
     return API.script;
