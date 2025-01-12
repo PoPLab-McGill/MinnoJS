@@ -15,10 +15,17 @@
 
     <!-- Your custom script -->
     <script>
-        // Ensure that the Manager is properly loaded before calling it
-        var API = new Manager();
-        // Initialize DataPipe with your study ID
-        init_data_pipe(API, 'B4G5rNbsxQwc', {file_type: 'csv'});
+        // Wait for the page and scripts to load before running custom code
+        window.onload = function() {
+            // Initialize the MinnoJS Manager
+            var API = new Manager();
+            
+            // Initialize DataPipe with your study ID
+            init_data_pipe(API, 'B4G5rNbsxQwc', {file_type: 'csv'});
+            
+            // Now you can continue with your IAT setup or logic
+            // You can add additional code to start your IAT task here if needed
+        };
     </script>
 </body>
 </html>
