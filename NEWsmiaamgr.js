@@ -4,7 +4,7 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
     var API = new Manager();
     init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG', {file_type: 'csv'}); // Replace with your study ID
 
-    API.setName('sciat');
+    API.setName('mgr');
     API.addSettings('skip', true);
 
     // Define stimuli
@@ -37,8 +37,8 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
         }],
         sciat_instructions: [{
             inherit: 'instructions',
-            name: 'sciat_instructions',
-            templateUrl: 'sciat_instructions.jst',
+            name: 'raceiat_instructions',
+            templateUrl: 'raceiat_instructions.jst',
             title: 'SC-IAT Instructions',
             header: 'Single Category IAT'
         }],
@@ -97,8 +97,3 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
             url: 'https://www.yourcompletionpage.com' // Replace with your actual redirect URL
         }]
     });
-
-    // Define study sequence
-    API.addSequence([
-        { type: 'isTouch' }, 
-        { inh
