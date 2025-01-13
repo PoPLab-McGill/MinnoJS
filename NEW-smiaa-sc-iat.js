@@ -1,9 +1,8 @@
-<script>
-    // Ensure all the dependencies are loaded properly using require.js
-    require(['https://cdn.jsdelivr.net/gh/baranan/minno-tasks@0.*/stiat/qualtrics/qstiat6.js'], function(stiatExtension) {
-        // Your ST-IAT configuration goes here
-        var task = stiatExtension({
-            category: {
+define(['pipAPI','https://cdn.jsdelivr.net/gh/baranan/minno-tasks@0.*/IAT/iat10.js'], function(APIConstructor, iatExtension){
+    let API = new APIConstructor();
+    let global = API.getGlobal();
+
+    return iatExtension({
                 name: 'Autistics', // Category name for the data
                 title: {
                     media: { word: 'Autistics' }, // Name shown in the task
