@@ -4,7 +4,7 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
     var API = new Manager();
     init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG', {file_type: 'csv'}); // Replace with your study ID
 
-    API.setName('mgr');
+    API.setName('my_study');
     API.addSettings('skip', true);
 
     // Define stimuli
