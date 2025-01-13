@@ -1,43 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinnoJS Study</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/minnojs/minno-quest@0.3/dist/main.css" />
+    <style type="text/css">
+        .container {
+            padding-top: 15px;
+        }
+    </style>
 
-<html>
-    <head>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/minnojs/minno-quest@0.3/dist/main.css" />
-		<style type="text/css">
-        .container {padding-top: 15px;}
-		</style>
-	
-        <script>
-            // load MinnoJS from the CDN (you probably don't need to change this)
-            var scriptTag                = document.createElement('script');
-            scriptTag.src                = 'https://cdn.jsdelivr.net/gh/minnojs/minno-quest@0.3/dist/pi-minno.js';
-            scriptTag.onload             = onLoad;
-            scriptTag.onreadystatechange = onLoad;
-            document.head.appendChild(scriptTag);
-        
-            // This function gets activated only after MinnoJS is loaded
-            function onLoad() {
-				// Create a div with class 'container' and id 'minno-app'
-				var container = document.createElement('div');
-				container.className = 'container';
+    <script>
+        // Load MinnoJS from the CDN
+        var scriptTag = document.createElement('script');
+        scriptTag.src = 'https://cdn.jsdelivr.net/gh/minnojs/minno-quest@0.3/dist/pi-minno.js';
+        scriptTag.onload = onLoad;
+        document.head.appendChild(scriptTag);
 
-				// Create the canvas object
-				var canvas = document.createElement('div');
+        // This function runs after MinnoJS is loaded
+        function onLoad() {
+            // Create a container for the MinnoJS app
+            var container = document.createElement('div');
+            container.className = 'container';
 
-				// Append the canvas object to the container
-				container.appendChild(canvas);
-			
+            // Create a canvas for the study
+            var canvas = document.createElement('div');
+            canvas.id = 'minno-app'; // Ensure the canvas has an ID for MinnoJS to target
+            container.appendChild(canvas);
 
-				// Append the container to the body
-				document.body.appendChild(container);
-                
-                // Run your study (just set the correct URL)
-                minnoJS(canvas, 'NEWsmiaamgr.js');
-                
-                // We need to wait a few miliseconds for Qualtrics to register the value that we entered
-                minnoJS.onEnd = function () { setTimeout(proceed, 100); }
-            }
-        </script>
-    </head>
-    <body>
-    </body>
+            // Append the container to the body
+            document.body.appendChild(container);
+
+            // Run your study (provide the correct script URL)
+            minnoJS(canvas, 'NEWsmiaamgr.js'); // Replace with your actual script
+
+            // Ensure Qualtrics captures the study result before proceeding
+            minnoJS.onEnd = function () {
+                setTimeout(proceed, 100); // Replace 'proceed' with your actual post-study logic
+            };
+        }
+    </script>
+</head>
+<body>
+</body>
 </html>
