@@ -29,20 +29,32 @@
 
         // This function runs after MinnoJS is loaded
         function onLoad() {
-            // Create a container for the MinnoJS app
-            var container = document.createElement('div');
-            container.className = 'container';
+            // Check if the app is already bootstrapped
+            var canvas = document.getElementById('minno-app');
+            if (!canvas) {
+                // Create a container for the MinnoJS app if not already created
+                var container = document.createElement('div');
+                container.className = 'container';
 
-            // Create a canvas for the study
-            var canvas = document.createElement('div');
-            canvas.id = 'minno-app'; // Ensure the canvas has an ID for MinnoJS to target
-            container.appendChild(canvas);
+                // Create a canvas for the study
+                canvas = document.createElement('div');
+                canvas.id = 'minno-app'; // Ensure the canvas has an ID for MinnoJS to target
+                container.appendChild(canvas);
 
-            // Append the container to the body
-            document.body.appendChild(container);
+                // Append the container to the body
+                document.body.appendChild(container);
+            }
 
-            // Run your study (provide the correct script URL)
-            minnoJS(canvas, 'NEW-smiaa-sc-iat.js'); // Replace with your actual script URL
+            // Check if MinnoJS is already initialized on the canvas
+            if (!canvas.hasAttribute('data-minno-initialized')) {
+                // Run your study (provide the correct script URL)
+                minnoJS(canvas, 'NEW-smiaa-sc-iat.js'); // Replace with your actual script URL
+
+                // Mark this element as initialized
+                canvas.setAttribute('data-minno-initialized', 'true');
+            } else {
+                console.log('MinnoJS is already initialized on this element.');
+            }
         }
     </script>
 </head>
