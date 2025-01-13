@@ -1,5 +1,5 @@
 define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], function(Manager, DataPipe) {
-
+    
     // Initialize Manager and data pipe
     var API = new Manager();
     init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG', {file_type: 'csv'}); // Replace with your study ID
