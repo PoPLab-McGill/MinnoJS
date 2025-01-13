@@ -1,4 +1,6 @@
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    
+    <script>
     require(['https://cdn.jsdelivr.net/gh/baranan/minno-tasks@0.*/stiat/qualtrics/qstiat6.js'], function(stiatExtension) {
         // Your ST-IAT configuration goes here
         var task = stiatExtension({
