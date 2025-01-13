@@ -1,8 +1,8 @@
-define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], function(Manager) {
+define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], function(Manager, DataPipe) {
 
     // Initialize Manager and data pipe
     var API = new Manager();
-    init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG', {file_type: 'csv'}); // Replace 'your-study-id' with your actual study ID
+    init_data_pipe(API, 'o3fzbHp75HLot5hIbZMCYS3siiAyLxE8yJkNQsqT6wYD4jPq90qvPtmooF98mRCTltjirG', {file_type: 'csv'}); // Replace with your study ID
 
     API.setName('sciat');
     API.addSettings('skip', true);
@@ -101,12 +101,4 @@ define(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/da
     // Define study sequence
     API.addSequence([
         { type: 'isTouch' }, 
-        { inherit: 'intro' },
-        { inherit: 'sciat_instructions' },
-        { inherit: 'sciat' },
-        { inherit: 'lastpage' },
-        { inherit: 'redirect' }
-    ]);
-
-    return API.script;
-});
+        { inh
