@@ -1,19 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SC-IAT Task</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
-</head>
-<body>
-    <h1>Welcome to the last task of the Attitudes in Autism Study. You will categorize words based on the task instructions.</h1>
-    <p>The task will begin shortly...</p>
-    <script>
-        require(['managerAPI', 'https://cdn.jsdelivr.net/gh/minnojs/minno-datapipe@1.*/datapipe.min.js'], function (Manager) {
-            var API = new Manager();
-            // Continue with your setup
-        });
-    </script>
-</body>
+
+<html>
+    <head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/minnojs/minno-quest@0.3/dist/main.css" />
+		<style type="text/css">
+        .container {padding-top: 15px;}
+		</style>
+	
+        <script>
+            // load MinnoJS from the CDN (you probably don't need to change this)
+            var scriptTag                = document.createElement('script');
+            scriptTag.src                = 'https://cdn.jsdelivr.net/gh/minnojs/minno-quest@0.3/dist/pi-minno.js';
+            scriptTag.onload             = onLoad;
+            scriptTag.onreadystatechange = onLoad;
+            document.head.appendChild(scriptTag);
+        
+            // This function gets activated only after MinnoJS is loaded
+            function onLoad() {
+				// Create a div with class 'container' and id 'minno-app'
+				var container = document.createElement('div');
+				container.className = 'container';
+
+				// Create the canvas object
+				var canvas = document.createElement('div');
+
+				// Append the canvas object to the container
+				container.appendChild(canvas);
+			
+
+				// Append the container to the body
+				document.body.appendChild(container);
+                
+                // Run your study (just set the correct URL)
+                minnoJS(canvas, 'NEWsmiaamgr.js');
+                
+                // We need to wait a few miliseconds for Qualtrics to register the value that we entered
+                minnoJS.onEnd = function () { setTimeout(proceed, 100); }
+            }
+        </script>
+    </head>
+    <body>
+    </body>
 </html>
