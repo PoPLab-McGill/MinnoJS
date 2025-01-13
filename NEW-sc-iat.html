@@ -15,7 +15,16 @@
         // Load MinnoJS from the CDN
         var scriptTag = document.createElement('script');
         scriptTag.src = 'https://cdn.jsdelivr.net/gh/minnojs/minno-quest@0.3/dist/pi-minno.js';
+        
+        // This function runs after MinnoJS is loaded
         scriptTag.onload = onLoad;
+
+        // Handle script load errors
+        scriptTag.onerror = function() {
+            console.error("Failed to load MinnoJS script.");
+        };
+
+        // Append the script tag to load the MinnoJS library
         document.head.appendChild(scriptTag);
 
         // This function runs after MinnoJS is loaded
@@ -33,12 +42,7 @@
             document.body.appendChild(container);
 
             // Run your study (provide the correct script URL)
-            minnoJS(canvas, 'NEW-smiaa-sc-iat.js'); // Replace with your actual script
-
-            // Ensure Qualtrics captures the study result before proceeding
-            minnoJS.onEnd = function () {
-                setTimeout(proceed, 100); // Replace 'proceed' with your actual post-study logic
-            };
+            minnoJS(canvas, 'NEW-smiaa-sc-iat.js'); // Replace with your actual script URL
         }
     </script>
 </head>
